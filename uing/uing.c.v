@@ -7,14 +7,24 @@ module uing
 
 struct C.uiInitOptions {}
 
+struct C.uiButton {}
+
 struct C.uiControl {}
+
 struct C.uiLabel {}
+
 struct C.uiBox {}
-struct C.uiWindow {}
+
+
+struct C.uiTab {}
+
+struct C.uiEntry {}
 
 fn C.uiInit(options &C.uiInitOptions) &char
 fn C.uiUninit()
 fn C.uiMain()
+fn C.uiQuit()
+fn C.uiNewButton(&char) &C.uiButton
 fn C.uiNewLabel(&char) &C.uiLabel
 fn C.uiControl(voidptr) voidptr
 fn C.uiControlShow(&C.uiWindow)
@@ -24,50 +34,28 @@ fn C.uiBoxSetPadded(&C.uiBox, int)
 fn C.uiBoxAppend(&C.uiBox, &C.uiControl, int)
 fn C.uiNewVerticalBox() &C.uiBox
 fn C.uiNewHorizontalBox() &C.uiBox
+fn C.uiButtonOnClicked(&C.uiButton, ButtonCallback, voidptr)
+fn C.uiWindowOnClosing(&C.uiButton, ButtonCallback, voidptr)
+fn C.uiEntrySetText(&C.uiEntry, &char)
+fn C.uiNewEntry() &C.uiEntry
 
-pub struct Window {
-}
 
-pub struct Label {
-}
 pub struct Box {
 }
+
 pub struct Control {
 }
 
-pub fn new_window(title string, width int, height int, a int) &Window {
-	w := C.uiNewWindow(title.str, width, height, a)
-	return &Window(w)
-}
-pub fn (w &Window)set_child(c &Control) {
-	C.uiWindowSetChild (&C.uiWindow(w), &C.uiControl(c))
+pub struct Tab {
 }
 
-pub fn new_label(text string) &Label {
-	l := C.uiNewLabel(text.str)
-	return &Label(l)
+pub struct Entry {
 }
 
-pub fn new_hbox() &Box {
-	b := C.uiNewHorizontalBox()
-	return &Box(b)
-}
 
-pub fn (b &Box)set_padded(pad int) {
-	C.uiBoxSetPadded(&C.uiBox(b), pad)
-}
 
-pub fn (b &Box)append(c &Control, pos int) {
-	C.uiBoxAppend(&C.uiBox(b), &C.uiControl(c), pos)
-}
-
-pub fn new_vbox() &Box {
-	b := C.uiNewVerticalBox()
-   return &Box(b)
-}
-
-pub fn (w &Window) show() {
-	C.uiControlShow(C.uiControl(w))
+pub fn quit() {
+	C.uiQuit()
 }
 
 pub fn initialize() ! {
