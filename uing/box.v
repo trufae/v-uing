@@ -17,7 +17,3 @@ pub fn new_vbox() &Box {
 	b := C.uiNewVerticalBox()
 	return &Box(b)
 }
-
-pub fn (b &Box) control() &Control {
-	return &Control(b)
-}
