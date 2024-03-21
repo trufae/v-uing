@@ -7,7 +7,3 @@ pub fn new_entry() &Entry {
 pub fn (e &Entry) set_text(text string) {
 	C.uiEntrySetText(&C.uiEntry(e), text.str)
 }
-
-pub fn (l &Entry) control() &Control {
-	return &Control(l)
-}
