@@ -43,8 +43,6 @@ fn C.uiNewEntry() &C.uiEntry
 pub struct Box {
 }
 
-pub struct Control {
-}
 
 pub struct Tab {
 }
@@ -53,6 +51,8 @@ pub struct Entry {
 }
 
 
+// type Control = C.uiButton | C.uiLabel | C.uiBox | Button | Label | Box
+type Control = Button | Label | Box
 
 pub fn quit() {
 	C.uiQuit()
