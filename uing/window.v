@@ -10,8 +10,10 @@ pub fn new_window(title string, width int, height int, a int) &Window {
 	return &Window(w)
 }
 
-pub fn (w &Window) set_child(c &Control) {
-	C.uiWindowSetChild(&C.uiWindow(w), &C.uiControl(c))
+pub fn (w &Window) set_child(c voidptr) { // &C.uiControl) {
+	unsafe {
+		C.uiWindowSetChild(&C.uiWindow(w), &C.uiControl(c))
+	}
 }
 pub fn (w &Window) show() {
 	C.uiControlShow(C.uiControl(w))

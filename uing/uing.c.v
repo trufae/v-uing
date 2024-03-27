@@ -51,8 +51,8 @@ pub struct Entry {
 }
 
 
-// type Control = C.uiButton | C.uiLabel | C.uiBox | Button | Label | Box
-type Control = Button | Label | Box
+type Control = C.uiButton | C.uiLabel | C.uiBox | C.uiControl
+// type Control = Button | Label | Box
 
 pub fn quit() {
 	C.uiQuit()
