@@ -35,7 +35,7 @@ fn C.uiBoxAppend(&C.uiBox, &C.uiControl, int)
 fn C.uiNewVerticalBox() &C.uiBox
 fn C.uiNewHorizontalBox() &C.uiBox
 fn C.uiButtonOnClicked(&C.uiButton, ButtonCallback, voidptr)
-fn C.uiWindowOnClosing(&C.uiButton, ButtonCallback, voidptr)
+fn C.uiWindowOnClosing(&C.uiButton, WindowCallback, voidptr)
 fn C.uiEntrySetText(&C.uiEntry, &char)
 fn C.uiNewEntry() &C.uiEntry
 

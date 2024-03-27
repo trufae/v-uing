@@ -1,6 +1,7 @@
 
 module uing
 struct C.uiWindow {}
+
 pub struct Window {
 }
 
@@ -19,6 +20,8 @@ pub fn (w &Window) show() {
 	C.uiControlShow(C.uiControl(w))
 }
 
-pub fn (w &Window) on_closing(cb ButtonCallback) {
+type WindowCallback = fn (&Window, voidptr) int
+
+pub fn (w &Window) on_closing(cb WindowCallback) {
 	C.uiWindowOnClosing(C.uiControl(w), cb, 0)
 }
