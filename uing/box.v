@@ -9,7 +9,9 @@ pub fn (b &Box) set_padded(pad int) {
 	C.uiBoxSetPadded(&C.uiBox(b), pad)
 }
 
-pub fn (b &Box) append(c &Control, pos int) {
+// pub fn (b &Box) append(c &Control, pos int) {
+@[unsafe]
+pub fn (b &Box) append(c voidptr, pos int) {
 	C.uiBoxAppend(&C.uiBox(b), &C.uiControl(c), pos)
 }
 

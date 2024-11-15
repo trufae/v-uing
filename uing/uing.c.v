@@ -9,10 +9,13 @@ struct C.uiInitOptions {}
 
 struct C.uiButton {}
 
+@[typedef]
 struct C.uiControl {}
 
+@[typedef]
 struct C.uiLabel {}
 
+@[typedef]
 struct C.uiBox {}
 
 
@@ -20,7 +23,7 @@ struct C.uiTab {}
 
 struct C.uiEntry {}
 
-fn C.uiInit(options &C.uiInitOptions) &char
+fn C.uiInit(options &C.uiInitOptions) voidptr
 fn C.uiUninit()
 fn C.uiMain()
 fn C.uiQuit()
@@ -35,14 +38,12 @@ fn C.uiBoxAppend(&C.uiBox, &C.uiControl, int)
 fn C.uiNewVerticalBox() &C.uiBox
 fn C.uiNewHorizontalBox() &C.uiBox
 fn C.uiButtonOnClicked(&C.uiButton, ButtonCallback, voidptr)
-fn C.uiWindowOnClosing(&C.uiButton, ButtonCallback, voidptr)
+fn C.uiWindowOnClosing(&C.uiButton, WindowCallback, voidptr)
 fn C.uiEntrySetText(&C.uiEntry, &char)
 fn C.uiNewEntry() &C.uiEntry
 
-
 pub struct Box {
 }
-
 
 pub struct Tab {
 }
@@ -50,9 +51,8 @@ pub struct Tab {
 pub struct Entry {
 }
 
-
-// type Control = C.uiButton | C.uiLabel | C.uiBox | Button | Label | Box
-type Control = Button | Label | Box
+type Control = C.uiButton | C.uiLabel | C.uiBox | Button | Label | Box
+// type Control = Button | Label | Box
 
 pub fn quit() {
 	C.uiQuit()
