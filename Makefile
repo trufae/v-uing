@@ -3,6 +3,9 @@ all:
 	v -o main .
 	./main
 
+fmt indent:
+	v fmt -w main.v uing/*.v
+
 a:
 	v -o main.c .
 c:
