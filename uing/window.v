@@ -27,3 +27,47 @@ pub fn (w &Window) show() {
 pub fn (w &Window) on_closing(cb WindowCallback) {
 	C.uiWindowOnClosing(C.uiControl(w), cb, 0)
 }
+
+pub fn (w &Window) open_file() ?string {
+	unsafe {
+		r := C.uiOpenFile(&C.uiWindow(w))
+		if r == 0 {
+			return none
+		}
+		res := r.vstring()
+		C.free(r)
+		return res
+	}
+}
+
+pub fn (w &Window) open_folder() ?string {
+	unsafe {
+		r := C.uiOpenFolder(&C.uiWindow(w))
+		if r == 0 {
+			return none
+		}
+		res := r.vstring()
+		C.free(r)
+		return res
+	}
+}
+
+pub fn (w &Window) save_file() ?string {
+	unsafe {
+		r := C.uiSaveFile(&C.uiWindow(w))
+		if r == 0 {
+			return none
+		}
+		res := r.vstring()
+		C.free(r)
+		return res
+	}
+}
+
+pub fn (w &Window) msg_box(title string, description string) {
+	C.uiMsgBox(&C.uiWindow(w), title.str, description.str)
+}
+
+pub fn (w &Window) msg_box_error(title string, description string) {
+	C.uiMsgBoxError(&C.uiWindow(w), title.str, description.str)
+}

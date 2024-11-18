@@ -20,7 +20,13 @@ struct C.uiBox {}
 
 struct C.uiTab {}
 
+struct C.uiMenu {}
+
 struct C.uiEntry {}
+
+struct C.uiCombobox {}
+
+struct C.uiMultilineEntry {}
 
 fn C.uiInit(options &C.uiInitOptions) voidptr
 fn C.uiUninit()
@@ -54,6 +60,31 @@ fn C.uiSliderSetHasToolTip(&C.uiSlider, int)
 fn C.uiSliderOnChanged(&C.uiSlider, SliderCallback, voidptr)
 fn C.uiSliderOnReleased(&C.uiSlider, SliderCallback, voidptr)
 
+fn C.uiNewCombobox() &C.uiCombobox
+fn C.uiComboboxAppend(&C.uiCombobox, &char)
+fn C.uiComboboxInsertAt(&C.uiCombobox, int, &char)
+fn C.uiComboboxDelete(&C.uiCombobox, int)
+fn C.uiComboboxClear(&C.uiCombobox)
+fn C.uiComboboxSetSelected(&C.uiCombobox, int)
+fn C.uiComboboxSelected(&C.uiCombobox) int
+fn C.uiComboboxOnSelected(&C.uiCombobox, ComboboxCallback, voidptr)
+fn C.uiComboboxNumItems(&C.uiCombobox) int
+
+fn C.uiNewMultilineEntry() &C.uiMultilineEntry
+fn C.uiNewNonWrappingMultilineEntry() &C.uiMultilineEntry
+fn C.uiMultilineEntryText(&C.uiMultilineEntry) &char
+fn C.uiMultilineEntrySetText(&C.uiMultilineEntry, &char)
+fn C.uiMultilineEntrySetReadOnly(&C.uiMultilineEntry, int)
+fn C.uiMultilineEntryReadOnly(&C.uiMultilineEntry) int
+
+fn C.uiNewMenu(&char) &C.uiMenu
+
+fn C.uiOpenFile(&C.uiWindow) &char
+fn C.uiSaveFile(&C.uiWindow) &char
+fn C.uiOpenFolder(&C.uiWindow) &char
+fn C.uiMsgBox(&C.uiWindow, &char, &char) &char
+fn C.uiMsgBoxError(&C.uiWindow, &char, &char) &char
+
 pub struct Box {
 }
 
@@ -61,6 +92,12 @@ pub struct Tab {
 }
 
 pub struct Entry {
+}
+
+pub struct Menu {
+}
+
+pub struct MultilineEntry {
 }
 
 type Control = C.uiButton | C.uiLabel | C.uiBox | Button | Label | Box

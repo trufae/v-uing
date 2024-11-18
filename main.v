@@ -10,13 +10,18 @@ fn main() {
 	box.append(label, 1)
 
 	hbox := uing.new_hbox()
-	b0 := uing.new_button('ok')
-	b1 := uing.new_button('cancel')
+	b0 := uing.new_button('quit')
+	b0.on_clicked(fn () {
+		uing.quit()
+	})
+	b1 := uing.new_button('open file')
 
 	entry := uing.new_entry()
-	b1.on_clicked(fn [entry] () {
+	b1.on_clicked(fn [entry, w] () {
 		text := entry.get_text()
 		println('Why this callback is not executed ${text}')
+		f := w.open_file()
+		println(f)
 	})
 	// entry.set_padded(10)
 	box.append(entry, 0)
