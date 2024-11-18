@@ -18,7 +18,6 @@ struct C.uiLabel {}
 @[typedef]
 struct C.uiBox {}
 
-
 struct C.uiTab {}
 
 struct C.uiEntry {}
@@ -40,7 +39,20 @@ fn C.uiNewHorizontalBox() &C.uiBox
 fn C.uiButtonOnClicked(&C.uiButton, ButtonCallback, voidptr)
 fn C.uiWindowOnClosing(&C.uiButton, WindowCallback, voidptr)
 fn C.uiEntrySetText(&C.uiEntry, &char)
+fn C.uiEntryText(&C.uiEntry) &char
+fn C.uiEntryOnChanged(&C.uiEntry, EntryChangedCallback, voidptr)
+fn C.uiEntrySetReadOnly(&C.uiEntry, int)
+fn C.uiEntryReadOnly(&C.uiEntry) int
 fn C.uiNewEntry() &C.uiEntry
+fn C.uiNewPasswordEntry() &C.uiEntry
+fn C.uiNewSearchEntry() &C.uiEntry
+fn C.uiNewSlider(min int, max int) &C.uiSlider
+fn C.uiSliderSetRange(&C.uiSlider, int, int)
+fn C.uiSliderValue(&C.uiSlider) int
+fn C.uiSliderHasToolTip(&C.uiSlider) int
+fn C.uiSliderSetHasToolTip(&C.uiSlider, int)
+fn C.uiSliderOnChanged(&C.uiSlider, SliderCallback, voidptr)
+fn C.uiSliderOnReleased(&C.uiSlider, SliderCallback, voidptr)
 
 pub struct Box {
 }
@@ -52,6 +64,7 @@ pub struct Entry {
 }
 
 type Control = C.uiButton | C.uiLabel | C.uiBox | Button | Label | Box
+
 // type Control = Button | Label | Box
 
 pub fn quit() {

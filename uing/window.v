@@ -1,6 +1,7 @@
-
 module uing
+
 pub struct C.uiWindow {}
+
 pub struct Window {
 }
 
@@ -11,10 +12,12 @@ pub fn new_window(title string, width int, height int, a int) &Window {
 	return &Window(w)
 }
 
-@[unsafe]
+// @[unsafe]
 pub fn (w &Window) set_child(c voidptr) {
-// pub fn (w &Window) set_child(c &Control)
-	C.uiWindowSetChild(&C.uiWindow(w), &C.uiControl(c))
+	// pub fn (w &Window) set_child(c &Control)
+	unsafe {
+		C.uiWindowSetChild(&C.uiWindow(w), &C.uiControl(c))
+	}
 }
 
 pub fn (w &Window) show() {
