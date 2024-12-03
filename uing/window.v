@@ -5,7 +5,8 @@ pub struct C.uiWindow {}
 pub struct Window {
 }
 
-type WindowCallback = fn (voidptr, voidptr) int
+type WindowCallback = fn (&C.uiWindow, voidptr) int
+type WindowCallbackVoid = fn (&C.uiWindow, voidptr)
 
 pub fn new_window(title string, width int, height int, a int) &Window {
 	w := C.uiNewWindow(title.str, width, height, a)
@@ -70,4 +71,53 @@ pub fn (w &Window) msg_box(title string, description string) {
 
 pub fn (w &Window) msg_box_error(title string, description string) {
 	C.uiMsgBoxError(&C.uiWindow(w), title.str, description.str)
+}
+
+pub fn (w &Window) title() string {
+	unsafe {
+		return C.uiWindowTitle(C.uiControl(w)).vstring()
+	}
+}
+
+pub fn (w &Window) set_title(title string) {
+	C.uiWindowSetTitle(C.uiControl(w), title.str)
+}
+
+pub fn (w &Window) set_content_size(width int, height int) {
+	C.uiWindowSetContentSize(&C.uiWindow(w), width, height)
+}
+
+pub fn (w &Window) is_fullscreen() bool {
+	return C.uiWindowFullscreen(&C.uiWindow(w)) != 0
+}
+
+pub fn (w &Window) set_fullscreen(enable bool) {
+	C.uiWindowSetFullscreen(&C.uiWindow(w), enable)
+}
+
+pub fn (w &Window) is_borderless() bool {
+	return C.uiWindowBorderless(&C.uiWindow(w)) != 0
+}
+
+pub fn (w &Window) set_borderless(enable bool) {
+	C.uiWindowSetMargined(&C.uiWindow(w), enable)
+}
+
+pub fn (w &Window) is_resizeable() bool {
+	return C.uiWindowResizeable(&C.uiWindow(w)) != 0
+}
+
+pub fn (w &Window) set_resizeable(enable bool) {
+	C.uiWindowSetMargined(&C.uiWindow(w), enable)
+}
+
+pub fn (w &Window) is_margined() bool {
+	return C.uiWindowMargined(&C.uiWindow(w)) != 0
+}
+
+pub fn (w &Window) set_margined(enable bool) {
+	C.uiWindowSetBorderless(&C.uiWindow(w), enable)
+}
+pub fn (w &Window) destroy() {
+	C.uiControlDestroy(C.uiControl(w))
 }

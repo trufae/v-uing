@@ -35,9 +35,25 @@ fn C.uiQuit()
 fn C.uiNewButton(&char) &C.uiButton
 fn C.uiNewLabel(&char) &C.uiLabel
 fn C.uiControl(voidptr) voidptr
+fn C.uiControlDestroy(voidptr)
 fn C.uiControlShow(&C.uiWindow)
 fn C.uiNewWindow(&char, int, int, int) &C.uiWindow
+fn C.uiWindowTitle(&C.uiWindow) &char
+fn C.uiWindowSetTitle(&C.uiWindow, &char)
+fn C.uiWindowSetTitle(&C.uiWindow, &char)
+fn C.uiWindowPosition(&C.uiWindow, &int, &int)
+fn C.uiWindowOnPositionChanged(&C.uiWindow, WindowCallbackVoid, voidptr)
+fn C.uiWindowSetPosition(&C.uiWindow, int, int)
 fn C.uiWindowSetChild(&C.uiWindow, &C.uiControl)
+fn C.uiWindowSetContentSize(&C.uiWindow, int, int)
+fn C.uiWindowFullscreen(&C.uiWindow) int
+fn C.uiWindowSetFullscreen(&C.uiWindow, int)
+fn C.uiWindowBorderless(&C.uiWindow) int
+fn C.uiWindowSetBorderless(&C.uiWindow, int)
+fn C.uiWindowResizeable(&C.uiWindow) int
+fn C.uiWindowSetResizeable(&C.uiWindow, int)
+fn C.uiWindowMargined(&C.uiWindow) int
+fn C.uiWindowSetMargined(&C.uiWindow, int)
 fn C.uiBoxSetPadded(&C.uiBox, int)
 fn C.uiBoxAppend(&C.uiBox, &C.uiControl, int)
 fn C.uiNewVerticalBox() &C.uiBox
