@@ -116,7 +116,16 @@ pub struct Menu {
 pub struct MultilineEntry {
 }
 
-type Control = C.uiButton | C.uiLabel | C.uiBox | Button | Label | Box
+pub union Control {
+	a     C.uiControl
+	b     C.uiButton
+	c     C.uiLabel
+	d     C.uiBox
+	e     Entry
+	label Label
+	f     Slider
+	box   Box
+}
 
 // type Control = Button | Label | Box
 

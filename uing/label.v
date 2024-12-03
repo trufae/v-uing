@@ -3,6 +3,6 @@ module uing
 pub struct Label {
 }
 
-pub fn new_label(text string) &C.uiControl {
-	return &C.uiControl(C.uiNewLabel(text.str))
+pub fn new_label(text string) &Label { // &C.uiControl {
+	return &Label(C.uiNewLabel(text.str))
 }
