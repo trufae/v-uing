@@ -6,6 +6,7 @@ pub struct Window {
 }
 
 type WindowCallback = fn (&C.uiWindow, voidptr) int
+
 type WindowCallbackVoid = fn (&C.uiWindow, voidptr)
 
 pub fn new_window(title string, width int, height int, a int) &Window {
@@ -118,6 +119,7 @@ pub fn (w &Window) is_margined() bool {
 pub fn (w &Window) set_margined(enable bool) {
 	C.uiWindowSetBorderless(&C.uiWindow(w), enable)
 }
+
 pub fn (w &Window) destroy() {
 	C.uiControlDestroy(C.uiControl(w))
 }

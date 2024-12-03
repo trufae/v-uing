@@ -11,7 +11,7 @@ fn main() {
 
 	hbox := uing.new_hbox()
 	b0 := uing.new_button('quit')
-	b0.on_clicked(fn [w]() {
+	b0.on_clicked(fn [w] () {
 		w.destroy()
 		uing.quit()
 	})
@@ -49,7 +49,7 @@ fn main() {
 		uing.quit()
 		return 1
 	})
-	w.set_title("My Window Title")
+	w.set_title('My Window Title')
 	w.show()
 
 	uing.main()
